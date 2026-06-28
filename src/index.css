@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-glass-bg: #07090C;
+  --color-glass-surface: rgba(255, 255, 255, 0.05);
+  --color-glass-panel: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.10);
+  
+  --color-accent-blue: #0A84FF;
+  --color-accent-purple: #7C5CFF;
+  
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+
+  --color-primary-text: #FFFFFF;
+  --color-secondary-text: #B8BDC7;
+}
+
+@layer base {
+  :root {
+    --bg: #F9FAFB;
+    --color-glass-surface: rgba(255, 255, 255, 0.4);
+    --color-glass-panel: rgba(255, 255, 255, 0.6);
+    --color-glass-border: rgba(0, 0, 0, 0.08);
+    --color-primary-text: #111827;
+    --color-secondary-text: #6B7280;
+    --specular: rgba(255, 255, 255, 0.8);
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: var(--color-glass-bg);
+    --color-glass-surface: rgba(255, 255, 255, 0.05);
+    --color-glass-panel: rgba(255, 255, 255, 0.05);
+    --color-glass-border: rgba(255, 255, 255, 0.10);
+    --color-primary-text: #FFFFFF;
+    --color-secondary-text: #B8BDC7;
+    --specular: rgba(255, 255, 255, 0.20);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--color-primary-text);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    @apply antialiased font-sans overflow-x-hidden;
+  }
+}
+
+@layer base {
+  option {
+    background-color: var(--bg);
+    color: var(--color-primary-text);
+  }
+}
+
+@layer utilities {
+  .liquid-glass {
+    background: var(--panel);
+    backdrop-filter: blur(64px) saturate(180%);
+    -webkit-backdrop-filter: blur(64px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+  
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border-top: 1px solid var(--specular);
+    border-left: 1px solid var(--specular);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  
+  .liquid-glass-surface {
+    background: var(--surface);
+    backdrop-filter: blur(64px) saturate(180%);
+    -webkit-backdrop-filter: blur(64px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .liquid-glass-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border-top: 1px solid var(--specular);
+    border-left: 1px solid var(--specular);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
