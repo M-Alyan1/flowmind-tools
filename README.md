@@ -1,8 +1,8 @@
 <div align="center">
-<img width="1200" height="475" alt="Image" src="[6-06-28-130040.png))](https://i.postimg.cc/gk3BGTFX/Screenshot-2026-06-28-130040.png)" />
+<img width="1200" height="475" alt="Image" src="https://i.postimg.cc/gk3BGTFX/Screenshot-2026-06-28-130040.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Run and deploy yourself
 
 This contains everything you need to run your app locally.
 
