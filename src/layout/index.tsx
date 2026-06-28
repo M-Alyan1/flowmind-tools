@@ -20,7 +20,7 @@ const NAV_ITEMS = [
 export const Topbar = () => {
   const { theme, setTheme } = useThemeStore();
   const location = useLocation();
-  const currentTitle = NAV_ITEMS.find(i => i.path === location.pathname)?.label || 'FlowMind Tools';
+  const currentTitle = NAV_ITEMS.find(i => i.path === location.pathname)?.label || 'FlowMind Chat Assistant';
 
   return (
     <GlassCard className="h-16 px-6 flex items-center justify-between mb-6 shrink-0 z-20 sticky top-4 mx-4 md:mx-8 !rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.2)]">
@@ -103,7 +103,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (v:
                 className={({ isActive }) => cn(
                   "relative flex items-center gap-3 px-3 py-3 rounded-2xl transition-all duration-300 group overflow-hidden",
                   isActive 
-                    ? "bg-accent-blue/10 text-accent-blue" 
+                    ? "bg-black/10 dark:bg-white/10 text-black dark:text-white" 
                     : "text-secondary-text hover:bg-black/5 dark:hover:bg-white/5 hover:text-primary-text"
                 )}
               >
@@ -112,7 +112,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (v:
                     {isActive && (
                       <motion.div 
                         layoutId="active-nav" 
-                        className="absolute inset-0 bg-accent-blue/10 rounded-2xl" 
+                        className="absolute inset-0 bg-black/10 dark:bg-white/10 rounded-2xl" 
                         initial={false}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -139,10 +139,10 @@ export const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (v:
           </nav>
 
           <div className="mt-auto pt-6 border-t border-border/50 flex flex-col gap-2">
-            <button className="flex items-center gap-3 px-3 py-3 rounded-2xl text-secondary-text hover:bg-black/5 dark:hover:bg-white/5 hover:text-primary-text transition-all overflow-hidden">
+            <a href="https://github.com/M-Alyan1/flowmind-tools" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-3 rounded-2xl text-secondary-text hover:bg-black/5 dark:hover:bg-white/5 hover:text-primary-text transition-all overflow-hidden">
               <Github size={22} className="shrink-0" />
               {isExpanded && <span className="whitespace-nowrap font-medium">GitHub</span>}
-            </button>
+            </a>
           </div>
         </GlassCard>
       </motion.aside>
