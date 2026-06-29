@@ -17,14 +17,22 @@ const NAV_ITEMS = [
   { path: '/sales-consultant', label: 'Sales Consultant', icon: MessageSquare, isNew: true },
 ];
 
-export const Topbar = () => {
+export const Topbar = ({ onOpenMenu }: { onOpenMenu?: () => void }) => {
   const { theme, setTheme } = useThemeStore();
   const location = useLocation();
   const currentTitle = NAV_ITEMS.find(i => i.path === location.pathname)?.label || 'FlowMind Chat Assistant';
 
   return (
-    <GlassCard className="h-16 px-6 flex items-center justify-between mb-6 shrink-0 z-20 sticky top-4 mx-4 md:mx-8 !rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.2)]">
-      <div className="flex items-center gap-4">
+    <GlassCard className="h-16 px-4 md:px-6 flex items-center justify-between mb-6 shrink-0 z-20 sticky top-4 mx-4 md:mx-8 !rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.2)]">
+      <div className="flex items-center gap-2 md:gap-4">
+        {onOpenMenu && (
+          <button 
+            className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-secondary-text hover:text-primary-text transition-colors"
+            onClick={onOpenMenu}
+          >
+            <Menu size={20} />
+          </button>
+        )}
         <h1 className="text-lg font-semibold tracking-tight">{currentTitle}</h1>
       </div>
       
@@ -171,14 +179,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
       <Sidebar isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
       
       <main className="flex-1 flex flex-col h-screen overflow-y-auto hide-scrollbar relative">
-        <button 
-          className="md:hidden absolute top-6 left-4 z-30 p-2 rounded-xl bg-panel backdrop-blur-xl border border-border"
-          onClick={() => setIsMobileMenuOpen(true)}
-        >
-          <Menu size={20} />
-        </button>
-        
-        <Topbar />
+        <Topbar onOpenMenu={() => setIsMobileMenuOpen(true)} />
         
         <div className="flex-1 px-4 md:px-8 pb-8 relative z-10 max-w-7xl mx-auto w-full">
           {children}
